@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Event Listener | JavaScript</title>
+  </head>
+  <body>
+    <button id="hoverBtn">Hover Over Me</button>
+
+    <form id="myForm">
+      <input type="text" placeholder="Enter something" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("hoverBtn")
+        .addEventListener("mouseover", function () {
+          alert("Mouse Hovered!");
+        });
+
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // ফর্ম সাবমি ট ব করা
+          alert("Form submission prevented!");
+        });
+    </script>
+  </body>
+</html>
