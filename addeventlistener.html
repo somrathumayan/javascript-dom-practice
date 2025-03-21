@@ -13,6 +13,9 @@
       <button type="submit">Submit</button>
     </form>
 
+    <h1>Click the button to change background color</h1>
+    <button id="changeColorBtn">Change Color</button>
+
     <script>
       document
         .getElementById("hoverBtn")
@@ -25,6 +28,14 @@
         .addEventListener("submit", function (event) {
           event.preventDefault(); // ফর্ম সাবমি ট ব করা
           alert("Form submission prevented!");
+        });
+
+      document
+        .getElementById("changeColorBtn")
+        .addEventListener("click", function () {
+          let colors = ["red", "blue", "green", "purple", "yellow"];
+          let randomColor = colors[Math.floor(Math.random() * colors.length)];
+          document.body.style.backgroundColor = randomColor;
         });
     </script>
   </body>
