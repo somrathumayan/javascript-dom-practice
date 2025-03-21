@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript</title>
-</head>
-<body>
+  </head>
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .class-style{
+        color: white;
+        background: red;
+        padding: 10px 20px;
+        font-weight: bold;
+        text-align: center;
+    }
+  </style>
+  <body>
     <h2 id="name">Mr. Humayan</h2>
     <button onclick="changetext()">Click to change</button>
 
-    
     <script>
-        function changetext(){
-            const myName = document.getElementById('name');
-            // myName.innerText = "Md. Humayan Kabir"; //change text
+      function changetext() {
+        const myName = document.getElementById("name");
+        // myName.innerText = "Md. Humayan Kabir"; //change text
 
-            //myName.innerHTML="<h1>Mr. Humayan</h1>" // change html tag
+        // myName.innerHTML="<h1>Mr. Humayan</h1>" // change html tag
 
-            //myName.style.color = 'red'; // change color
+        // myName.style.color = 'red'; // change color
 
-            // create new element 
-            // const newElement = document.createElement("p");;
-            // newElement.innerText = "I am from Naogaon";
-            // document.body.appendChild(newElement);
+        // create new element
+        // const newElement = document.createElement("p");;
+        // newElement.innerText = "I am from Naogaon";
+        // document.body.appendChild(newElement);
 
-            myName.remove(); // remove element
-            
-        }
+        // myName.remove(); // remove element
+
+        // myName.classList.toggle("class-style"); toggle classname
+
+
+      }
     </script>
-</body>
+  </body>
 </html>
