@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Attribute | JavaScript DOM</title>
+  </head>
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    
+  </style>
+  <body>
+    <h2 id="name">Mr. Humayan</h2>
+    <button onclick="change()">Click to change</button>
+
+    <script>
+      function change() {
+        let myName = document.getElementById("name");
+        myName.setAttribute("title", "My Name");
+        alert("Successfully attribute added! Hover mouse on text");
+      }
+    </script>
+  </body>
+</html>
