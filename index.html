@@ -9,10 +9,13 @@
     <h2 id="name">Mr. Humayan</h2>
     <button onclick="changetext()">Click to change</button>
 
+    
     <script>
         function changetext(){
             const myName = document.getElementById('name');
-            myName.innerText = "Md. Humayan Kabir";
+            // myName.innerText = "Md. Humayan Kabir"; //change text
+            myName.innerHTML="<h1>Mr. Humayan</h1>" // change html tag
+                
         }
     </script>
 </body>
