@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remove Property | JavaScript</title>
+    <title>User Registration | JavaScript</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -16,94 +16,118 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-family: Arial, sans-serif;
       }
       .container {
         background: white;
         color: black;
         padding: 2rem;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         width: 100%;
         max-width: 400px;
+        text-align: center;
       }
       input {
         width: 100%;
         margin-bottom: 1rem;
-        padding: 0.5rem;
+        padding: 0.75rem;
         border: 1px solid #ccc;
-        border-radius: 5px;
+        border-radius: 8px;
+        font-size: 1rem;
       }
       button {
         width: 100%;
-        padding: 0.5rem;
-        background-color: blue;
+        padding: 0.75rem;
+        background-color: #007bff;
         color: white;
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
         cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: background 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        display: block;
+        text-align: left;
+      }
+      .error {
+        color: red;
+        font-size: 0.875rem;
+        text-align: left;
       }
     </style>
   </head>
   <body>
-    <div class="container text-center">
-      <h2 class="mb-4">User Form</h2>
-      <form id="myForm">
-        <input
-          type="text"
-          id="name"
-          class="form-control"
-          placeholder="Enter your name"
-        />
-        <span id="errorName" style="color: red"></span>
-
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          placeholder="Enter your email"
-        />
-        <span id="errorEmail" style="color: red"></span>
-
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          placeholder="Enter your password"
-        />
-
-        <button type="submit">Submit</button>
+    <div class="container">
+      <h2 class="mb-4">User Registration</h2>
+      <form id="registerForm">
+        <div class="mb-3">
+          <label>Name:</label>
+          <input type="text" id="userName" class="form-control" />
+          <span id="errorUserName" class="error"></span>
+        </div>
+        <div class="mb-3">
+          <label>Email:</label>
+          <input type="text" id="userEmail" class="form-control" />
+          <span id="errorUserEmail" class="error"></span>
+        </div>
+        <div class="mb-3">
+          <label>Password:</label>
+          <input type="password" id="userPassword" class="form-control" />
+          <span id="errorUserPassword" class="error"></span>
+        </div>
+        <button type="submit">Register</button>
       </form>
     </div>
 
     <script>
       document
-        .getElementById("myForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          let name = document.getElementById("name").value;
-          let email = document.getElementById("email").value;
+        .getElementById("registerForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let name = document.getElementById("userName").value;
+          let email = document.getElementById("userEmail").value;
+          let password = document.getElementById("userPassword").value;
+          let errorUserName = document.getElementById("errorUserName");
+          let errorUserEmail = document.getElementById("errorUserEmail");
+          let errorUserPassword = document.getElementById("errorUserPassword");
+          let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+          let passwordPattern = /^(?=.*[!@#$%^&]).{6,}$/;
+          let isValid = true;
 
-          let errorMsg = document.getElementById("errorName");
           if (name === "") {
-            errorMsg.innerText = "Name is required!";
+            errorUserName.innerText = "Name is required!";
+            isValid = false;
           } else {
-            errorMsg.innerText = "";
+            errorUserName.innerText = "";
           }
-
-          let errorEmail = document.getElementById("errorEmail");
-          let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/; // Email Validation Regex
           if (!email.match(emailPattern)) {
-            errorEmail.innerText = "Invalid email format!";
+            errorUserEmail.innerText = "Invalid email format!";
+            isValid = false;
           } else {
-            errorEmail.innerText = "";
+            errorUserEmail.innerText = "";
           }
-
-          if (name !== "" && email.match(emailPattern)) {
-            alert("Form submitted successfully!");
-            document.getElementById("myForm").reset();
+          if (!password.match(passwordPattern)) {
+            errorUserPassword.innerText =
+              "Password must be at least 6 characters & contain a special character (!@#$%^&)";
+            isValid = false;
+          } else {
+            errorUserPassword.innerText = "";
+          }
+          if (isValid) {
+            alert("Form Submitted Successfully!");
+            document.getElementById("registerForm").reset(); // Clears the input fields
           }
         });
     </script>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
