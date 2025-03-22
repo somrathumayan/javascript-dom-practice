@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+  </head>
+  <body>
+    <h2>Search Users</h2>
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search by name"
+      onkeyup="searchUser()"
+    />
+    <ul id="userList"></ul>
+
+    <script>
+      let usersData = [];
+      async function fetchUsers() {
+        let response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        usersData = await response.json();
+        displayUsers(usersData);
+      }
+      function displayUsers(users) {
+        let userList = document.getElementById("userList");
+        userList.innerHTML = "";
+        users.forEach((user) => {
+          let li = `<li>${user.name} - ${user.email}</li>`;
+          userList.innerHTML += li;
+        });
+      }
+      function searchUser() {
+        let query = document.getElementById("searchInput").value.toLowerCase();
+        let filteredUsers = usersData.filter((user) =>
+          user.name.toLowerCase().includes(query)
+        );
+        displayUsers(filteredUsers);
+      }
+      fetchUsers();
+    </script>
+  </body>
+</html>
