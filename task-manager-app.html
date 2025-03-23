@@ -18,11 +18,11 @@
     <ul id="taskList"></ul>
 
     <script>
-      // Local Storage theke load kora
+      // Local Storage load
       let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
       function displayTasks() {
         let taskList = document.getElementById("taskList");
-        taskList.innerHTML = ""; // ager ta clear kora
+        taskList.innerHTML = ""; // clear previous task 
         tasks.forEach((task, index) => {
           let li = document.createElement("li");
           li.innerText = task.text;
@@ -30,7 +30,7 @@
           if (task.completed) {
             li.classList.add("completed");
           }
-          // ✅ chek kora
+          // ✅ check
           let checkBox = document.createElement("input");
           checkBox.type = "checkbox";
           checkBox.checked = task.completed;
@@ -57,7 +57,7 @@
         tasks.push({ text: input, completed: false });
         localStorage.setItem("tasks", JSON.stringify(tasks));
         displayTasks();
-        document.getElementById("taskInput").value = ""; // ইinput empty kora
+        document.getElementById("taskInput").value = ""; // do input empty
       }
       function toggleTaskCompletion(index) {
         tasks[index].completed = !tasks[index].completed;
@@ -69,7 +69,7 @@
         localStorage.setItem("tasks", JSON.stringify(tasks));
         displayTasks();
       }
-      // page load hole run hobe
+      // page load hole run
       displayTasks();
     </script>
   </body>
