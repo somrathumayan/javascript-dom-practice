@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Typing Effect</h2>
+    <p id="typeText"></p>
+
+    <script>
+      let text = "Welcome to JavaScript DOM!";
+      let index = 0;
+      function typeEffect() {
+        if (index < text.length) {
+          document.getElementById("typeText").innerText += text.charAt(index);
+          index++;
+          setTimeout(typeEffect, 100); // তি ১০০ms পর পর একে ক অর য োগ হবে
+        }
+      }
+      typeEffect();
+    </script>
+  </body>
+</html>
