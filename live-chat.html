@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Chat System</title>
+  </head>
+  <body>
+    <h2>Live Chat</h2>
+    <div id="chatBox"></div>
+    <input type="text" id="chatInput" placeholder="Type a message" />
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+      function sendMessage() {
+        let input = document.getElementById("chatInput");
+        let message = input.value;
+        if (message === "") return;
+        let chatBox = document.getElementById("chatBox");
+        
+        let p = document.createElement("p");
+        p.innerText = message;
+        chatBox.appendChild(p);
+        input.value = ""; // ইনপুট খালি করা
+        // ল অট োমে ক নি চে নে মে যাবে
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    </script>
+  </body>
+</html>
