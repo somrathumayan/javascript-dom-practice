@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Manager App</title>
+    <title>Task Manager App | Session and Local Storage</title>
     <style>
       .completed {
         text-decoration: line-through;
@@ -18,26 +18,26 @@
     <ul id="taskList"></ul>
 
     <script>
-      // Local Storage থে কে টা ল োড করা
+      // Local Storage theke load kora
       let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
       function displayTasks() {
         let taskList = document.getElementById("taskList");
-        taskList.innerHTML = ""; // আগে র টা ক্লি য়ার করা
+        taskList.innerHTML = ""; // ager ta clear kora
         tasks.forEach((task, index) => {
           let li = document.createElement("li");
           li.innerText = task.text;
-          // যদি টা স হয়, তাহলে CSS াস য োগ করা
+          // add css
           if (task.completed) {
             li.classList.add("completed");
           }
-          // ✅ স করার জন চে কব
+          // ✅ chek kora
           let checkBox = document.createElement("input");
           checkBox.type = "checkbox";
           checkBox.checked = task.completed;
           checkBox.onclick = function () {
             toggleTaskCompletion(index);
           };
-          // ❌ টা ডি লি ট করার জন বাটন
+          // ❌ Delete button
           let deleteBtn = document.createElement("button");
           deleteBtn.innerText = "❌";
           deleteBtn.onclick = function () {
@@ -57,7 +57,7 @@
         tasks.push({ text: input, completed: false });
         localStorage.setItem("tasks", JSON.stringify(tasks));
         displayTasks();
-        document.getElementById("taskInput").value = ""; // ইনপুট ফি  খালি করা
+        document.getElementById("taskInput").value = ""; // ইinput empty kora
       }
       function toggleTaskCompletion(index) {
         tasks[index].completed = !tasks[index].completed;
@@ -69,7 +69,7 @@
         localStorage.setItem("tasks", JSON.stringify(tasks));
         displayTasks();
       }
-      // পে জ ল োড হলে টা ল োড করবে
+      // page load hole run hobe
       displayTasks();
     </script>
   </body>
