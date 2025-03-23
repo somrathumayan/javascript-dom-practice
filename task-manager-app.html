@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager App</title>
+    <style>
+      .completed {
+        text-decoration: line-through;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Task Manager App</h2>
+    <input type="text" id="taskInput" placeholder="Enter a task" />
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+      // Local Storage থে কে টা ল োড করা
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      function displayTasks() {
+        let taskList = document.getElementById("taskList");
+        taskList.innerHTML = ""; // আগে র টা ক্লি য়ার করা
+        tasks.forEach((task, index) => {
+          let li = document.createElement("li");
+          li.innerText = task.text;
+          // যদি টা স হয়, তাহলে CSS াস য োগ করা
+          if (task.completed) {
+            li.classList.add("completed");
+          }
+          // ✅ স করার জন চে কব
+          let checkBox = document.createElement("input");
+          checkBox.type = "checkbox";
+          checkBox.checked = task.completed;
+          checkBox.onclick = function () {
+            toggleTaskCompletion(index);
+          };
+          // ❌ টা ডি লি ট করার জন বাটন
+          let deleteBtn = document.createElement("button");
+          deleteBtn.innerText = "❌";
+          deleteBtn.onclick = function () {
+            removeTask(index);
+          };
+          li.prepend(checkBox);
+          li.appendChild(deleteBtn);
+          taskList.appendChild(li);
+        });
+      }
+      function addTask() {
+        let input = document.getElementById("taskInput").value;
+        if (input === "") {
+          alert("Please enter a task!");
+          return;
+        }
+        tasks.push({ text: input, completed: false });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        displayTasks();
+        document.getElementById("taskInput").value = ""; // ইনপুট ফি  খালি করা
+      }
+      function toggleTaskCompletion(index) {
+        tasks[index].completed = !tasks[index].completed;
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        displayTasks();
+      }
+      function removeTask(index) {
+        tasks.splice(index, 1);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        displayTasks();
+      }
+      // পে জ ল োড হলে টা ল োড করবে
+      displayTasks();
+    </script>
+  </body>
+</html>
